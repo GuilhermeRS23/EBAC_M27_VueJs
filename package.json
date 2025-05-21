@@ -1,5 +1,5 @@
 {
-  "name": "ebac-m27-vuejs",
+  "name": "ebac-m27-vuejs-calculadora",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -9,7 +9,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "bootstrap": "^5.3.6",
     "vue": "^3.5.13"
   },
   "devDependencies": {

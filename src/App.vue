@@ -1,62 +1,47 @@
 <script setup>
-import Header from "./components/Header.vue";
-import Form from "./components/Form.vue";
-import ListTask from "./components/ListTask.vue";
-import { reactive } from "vue";
-
-const estado = reactive({
-  filtro: "todos",
-  tarefaTemp: "",
-  tarefas: [
-    {
-      descricao: "Estudar Vue.js",
-      finalizada: false
-    },
-    {
-      descricao: "Estudar React.Js",
-      finalizada: true
-    },
-    {
-      descricao: "Realizar uma caminhada",
-      finalizada: false
-    }
-  ]
-});
-
-const getTarefasPendentes = () => {
-  return estado.tarefas.filter(tarefa => !tarefa.finalizada);
-};
-const getTarefasFinalizadas = () => {
-  return estado.tarefas.filter(tarefa => tarefa.finalizada);
-};
-
-const getFiltroTarefas = () => {
-  const { filtro } = estado;
-  if (filtro === "finalizadas") {
-    return getTarefasFinalizadas();
-  } else if (filtro === "pendentes") {
-    return getTarefasPendentes();
-  } else {
-    return estado.tarefas
-  }
-}
-
-const adicionarTarefa = () => {
-  const novaTarefa = {
-    descricao: estado.tarefaTemp,
-    finalizada: false,
-  }
-  estado.tarefas.push(novaTarefa);
-  estado.tarefaTemp = "";
-}
+import HelloWorld from './components/HelloWorld.vue'
+import TheWelcome from './components/TheWelcome.vue'
 </script>
 
 <template>
-  <div class="container">
-    <Header :tarefas-pendentes="getTarefasPendentes().length" />
-    <Form :adicionar-tarefa="adicionarTarefa" :tarefa-temp="estado.tarefaTemp"
-      :alterar-temp="e => estado.tarefaTemp = e.target.value" :alterar-tarefa="e => estado.tarefaTemp = e.target.value"
-      :filtro="e => estado.filtro = e.target.value" />
-    <ListTask :tarefas="getFiltroTarefas()" />
-  </div>
+  <header>
+    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+
+    <div class="wrapper">
+      <HelloWorld msg="You did it!" />
+    </div>
+  </header>
+
+  <main>
+    <TheWelcome />
+  </main>
 </template>
+
+<style scoped>
+header {
+  line-height: 1.5;
+}
+
+.logo {
+  display: block;
+  margin: 0 auto 2rem;
+}
+
+@media (min-width: 1024px) {
+  header {
+    display: flex;
+    place-items: center;
+    padding-right: calc(var(--section-gap) / 2);
+  }
+
+  .logo {
+    margin: 0 2rem 0 0;
+  }
+
+  header .wrapper {
+    display: flex;
+    place-items: flex-start;
+    flex-wrap: wrap;
+  }
+}
+</style>
